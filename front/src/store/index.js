@@ -4,21 +4,22 @@ import createPersistedState from "vuex-persistedstate"
 
 Vue.use(Vuex)
 
+let contract
+
 const store = new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
-    contract: null,
     user_account: null,
-    games: [],
+    games: {},
   },
   getters: {
-    contract: state => state.contract,
+    contract: () => contract,
     user_account: state => state.user_account,
     games: state => state.games,
   },
   mutations: {
     contract: (state, c) => {
-      state.contract = c
+      contract = c
     },
     user_account: (state, a) => {
       state.user_account = a
